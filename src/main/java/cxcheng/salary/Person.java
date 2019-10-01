@@ -9,27 +9,42 @@ import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 /**
+ * Person entity
+ * 
  * @author cxcheng
  *
  */
 
-@Data
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
-@RequiredArgsConstructor
-@JsonIgnoreProperties("id")
+@JsonIgnoreProperties("id") // do not include ID in JSON output
 public class Person {
     private @Id @GeneratedValue Long id;
     private @NonNull String name;
-    private @NonNull double salary;
+    private double salary;
+
+
+    public boolean hasValidSalary() {
+        return salary >= 0.0 && salary <= 4000.0;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
 }
