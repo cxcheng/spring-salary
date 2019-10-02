@@ -65,6 +65,7 @@ thunderhill:~ cxcheng$ curl http://localhost:8080/users
 * Names can be duplicated. Name is not the primary key in the data. I have a separate numeric ID sequence.
 * Loading of CSV data replaces *all* of the existing data instead of merging. Otherwise, we would have a problem with merging because of possible repeated names.
 * Salary numbers are stored with all decimal places, although output rounds to 2 decimal places only.
+* List of users returned sorted by name.
 
 ### Components
 
@@ -119,6 +120,12 @@ What I can do more:
 
 ## Notes
 
+Application is read-only except when loading users. Users are only loaded when starting up. No problem with concurrent access.
 
+JPQL to filter list of users by salary from the database. This may need to be refined as I'm unconvertible with spliting the logic between repository and service.
+
+I was rusty with Spring Boot so it took me awhile to get used to it, particularly on the `Mockito` unit tests.
+
+Did not really document the code in depth as I personally don't like too many comments in the code, preferring to go with standardized coding and contracts between callers and callees. The nice thing about Spring is that it lays down a structure and convention on how to divide up components and how they need to interact with each other, as well as a convention for dependency injection. However, I agree that I can try to document the service call API params and outputs.
 
 
